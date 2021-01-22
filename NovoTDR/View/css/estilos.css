@@ -1,0 +1,117 @@
+h1 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+p {
+    font-weight: bold;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: auto;
+}
+
+#ladoEsquerdo {
+    width: 43%;
+    height: 200%;
+    top: 0%;
+    bottom: 0%;
+    position: absolute;
+    margin-top: 7.5%;
+    margin-right: 1%;
+    margin-bottom: 5%;
+    margin-left: 1%;
+    left: 0px;
+    /*background-color:#598E60;*/
+}
+
+#ladoDireito {
+    width: 100%;
+    height: 200%;
+    top: 0%;
+    bottom: 0px;
+    position: absolute;
+    left: 39%;
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    /*background-color:#51d6cb;*/
+}
+
+#BarraDeTotais {
+    width: 56.4%;
+    height: 15%;
+    position: absolute;
+    top: 0%;
+    bottom: 60%;
+    left: 44%;
+    */background-color: yellow;
+    */
+}
+
+#Tabela {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 1%;
+}
+
+#Qualificacao {
+    width: 150px;
+    height: 120px;
+    position: relative;
+    padding: 10px, 10px, 10px, 10px;
+    margin: auto;
+    background-color: #343A40;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+#Requalificacao {
+    width: 20%;
+    height: 80%;
+    position: absolute;
+    top: 8%;
+    left: 40%;
+    background-color: #ef5d5d;
+    border-radius: 5%;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+#TotalGeral {
+    width: 20%;
+    height: 80%;
+    position: absolute;
+    top: 8%;
+    left: 73%;
+    background-color: #77ce8a;
+    border-radius: 5%;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+
+/*	table tbody tr:nth-child(2n+1) {
+background: lightgray;
+}*/
+
+.TextoTotais {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Subtitulos {
+    font-size: 15px;
+    font-weight: bold;
+}

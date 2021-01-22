@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language="javascript">
+ 
+function alterarTexto() {
+var novoTexto = document.formTexto.novoTexto.value;
+document.getElementById("texto").innerHTML = novoTexto;
+ 
+}
+ 
+function adicionarTexto() {
+ 
+var novoTexto = document.formTexto.novoTexto.value;
+document.getElementById("texto").innerHTML += "\\r\\n"+novoTexto;
+ 
+}
+ 
+</script>
+</head>
+<body>
+
+<div id="texto">
+Texto original da div.
+</div>
+ 
+<form name="formTexto">
+<input type="text" name="novoTexto" id="novoTexto"/><br/>
+<input type="button" value="Alterar texto" onclick="alterarTexto()" />&nbsp;
+<input type="button" value="Adicionar texto" onclick="adicionarTexto()" />
+ 
+</form>
+</body>
+</html>

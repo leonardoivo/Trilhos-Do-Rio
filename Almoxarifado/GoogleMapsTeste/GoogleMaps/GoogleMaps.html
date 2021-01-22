@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA72NcoZXPMcYPisPwtck2Mwr_ocPMB8ZY&amp"></script>
+   <!-- src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA72NcoZXPMcYPisPwtck2Mwr_ocPMB8ZY&amp" -->
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-23.549078, -46.614304),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+            
+            var ponto = new google.maps.LatLng(-23.524487,-47.441711);
+            
+            var marker = new google.maps.Marker({
+             position: ponto,//seta posição
+             map: map,//Objeto mapa
+             title:"Hello World!"//string que será exibida quando passar o mouse no marker
+             //icon: caminho_da_imagem
+            });
+      }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas" style="width:50%; height:50%"></div>
+  </body>
+</html>	

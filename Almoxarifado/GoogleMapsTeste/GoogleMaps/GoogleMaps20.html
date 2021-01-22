@@ -1,0 +1,25 @@
+  <!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>Google Maps API v3: Criando rotas</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+      
+    </head>
+ 
+    <body>
+  
+    <script src="js/mapa3.js"></script>
+  <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72NcoZXPMcYPisPwtck2Mwr_ocPMB8ZY&callback=initMap"></script>
+    <h1>you may modify the routes and copy them</h1>
+    <div id="map_canvas" style="height:300px;width:300px;"></div>
+    <div id="UI" style="visibility:hidden">
+      <select>
+        <option value="r0">route#1</option>
+        <option value="r1">route#2</option>
+      </select><input type="button" value="copy route to map2" onclick="fx(this.previousSibling.value)">
+    </div>
+    <div id="map_canvas2" style="height:300px;width:300px;"></div>
+</body>
+</html>

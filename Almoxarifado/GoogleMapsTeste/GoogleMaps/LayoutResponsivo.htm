@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Layout responsivo</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        /* CSS padrão - preparado para telas com 1024 de largura ou mais */
+        * {margin: 0; padding: 0;}
+        body {font-size: 12px;}
+        #corpo {width: 960px; margin: 0 auto; }
+        #barra-esquerda {width: 20%; min-height: 100px; background-color: Aqua; float: left; }
+        #conteudo {width: 60%; min-height: 100px; background-color: Yellow; float: left; }
+        #barra-direita {width: 20%; min-height: 100px; background-color: Aqua; float: left;}
+        
+        
+        /*Media Querie 1: Para adequação do layout em telas menores que 900px de largura */
+        @media screen and (max-width: 900px)
+        {
+            #corpo {width: 100%; }
+            #barra-esquerda, #conteudo, #barra-direita {width: 100%; float: none; margin: 0; }
+        }
+        
+        /*Media Querie 2: Para adequação do layout em telas menores que 400px de largura */
+        @media screen and (max-width: 400px)
+        {
+            #barra-esquerda {display: none; } /*Escondendo a barra lateral da esquerda*/
+        }
+    </style>
+</head>
+<body>
+<div id="corpo">
+    <div id="barra-esquerda">
+        parte 1
+    </div>
+    <div id="conteudo">
+        parte 2 parte 2 parte 2 parte 2 parte 2.
+    </div>
+    <div id="barra-direita">
+        parte 3
+    </div>
+</div>
+</body>
+</html>

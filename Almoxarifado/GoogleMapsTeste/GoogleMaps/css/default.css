@@ -1,0 +1,146 @@
+
+html, body {
+  background-color:#b0c4de;
+  height: 100%;
+  width:100%;
+  margin: auto;
+  padding: auto;
+}
+
+.drag {
+  width: 100px;
+  height: 100px;
+  background:#db8636 ;
+  display: inline-block;
+  margin-right: 10px;
+   border-radius:10px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  border:black solid 1px;
+ 
+}
+#boxB{
+  margin-right: 0px;
+}
+#big {
+  width: 65%;
+  height: 80%;
+/*  background: red;*/
+  margin:  auto;
+  text-align:center; 
+  color:white; 
+  font-family:arial;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: #f00;
+}
+#section {
+  width:415px;
+  height: 400px;
+/*  background:gray;*/
+  margin: 20px auto;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: #f00;
+}
+ul{
+  list-style:none; 
+  text-align:center; 
+  color:white; 
+  font-family:arial;
+}
+h1{ 
+  font-family:arial; 
+  text-align:center;
+}
+.Rotas {
+  width: 100%;
+  height: 150%;
+  background:#b9e276 ;
+  display: inline-block;
+  margin-right: 5px;
+  position:relative;
+  right:22%;
+ margin-top: 12%;
+  border-radius:10px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  /*-webkit-margin-top: 12%;*/
+}
+
+
+#info-panel {
+  width: 25%;
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  left: 90px;
+  background-color: #fff;
+  padding: 2px;
+  border: 1px solid #999;
+  background: rgba(255, 255, 255, 1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: outset 1px #a1b5cf;
+}
+#map{float:left;width:100%;height:100%; left:0%;}
+/*
+  BODY { height: 8.5in;
+		  background-color:#b0c4de;
+		  width:100%;
+		   } 
+*/
+		   /* Required for percentage heights below */
+      #header {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        top: 0%;
+        right: 0%;
+        bottom: auto;
+        left: 0%;
+        background-color:#ffe100;
+      }
+      #sidebar {
+        position: absolute;
+        width: 10%;
+        height: auto;
+        top: 0%;
+        right: auto;
+        bottom: 0%;
+        left: 0%;
+        background-color:#69a5d3 ;
+      }
+      #main {
+        position: absolute;
+        width: 90%;
+        height: 35%;
+        top: 0%;
+        right: 0%;
+        bottom: 55%;
+        left: 10%;
+         background-color:white;
+      }
+      #footer {
+        position: absolute;
+        width: 44.7%;
+        height: auto;
+        top: 35%;
+        right: 0%;
+        bottom: 0%;
+        left: 10%;
+        background-color:#42c49b;
+      }
+      #rightbar {
+        position: absolute;
+        width: 50%;
+        height: auto;
+        top: 35%;
+        right:0%;
+        bottom: 0%;
+        left: 54.7%;
+        background-color:#f4c058;
+      }
+      
+      

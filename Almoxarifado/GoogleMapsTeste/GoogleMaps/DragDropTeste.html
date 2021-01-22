@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function dragStart(ev) {
+   ev.dataTransfer.effectAllowed='move';
+   ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+   ev.dataTransfer.setDragImage(ev.target,100,100);
+   return true;
+}
+function dragEnter(ev) {
+   event.preventDefault();
+     document.getElementById('divStatus').innerHTML += "entrou no destino...<br />";
+   return true;
+}
+function dragOver(ev) {
+     event.preventDefault();
+}
+function dragDrop(ev) {
+   var data = ev.dataTransfer.getData("Text");
+   ev.target.appendChild(document.getElementById(data));
+   ev.stopPropagation();
+   return false;
+}
+
+</script>
+<style>
+	.drag {
+  width: 200px;
+  height: 200px;
+  background: blue;
+  display: inline-block;
+  margin-right: 10px;
+}
+#boxB{
+  margin-right: 0px;
+}
+#big {
+  width: 415px;
+  height: 400px;
+  background: red;
+  margin: 20px auto;
+}
+#section {
+width: 415px;
+  height: 200px;
+  background:gray;
+  margin: 20px auto;
+}</style>
+</head>
+<body>
+
+<h1>Drag the blue boxes into the red box and back</h1>
+<div id="big" ondragenter="return dragEnter(event)"
+     ondrop="return dragDrop(event)" 
+     ondragover="return dragOver(event)"></div>
+<section id="section"  ondragenter="return dragEnter(event)" 
+     ondrop="return dragDrop(event)" 
+     ondragover="return dragOver(event)">
+<div class="drag" id="boxA" draggable="true" ondragstart="return dragStart(event)">1</div>
+<div class="drag" id="boxB" draggable="true" ondragstart="return dragStart(event)">2</div>
+</section>
+
+</body>
+</html>

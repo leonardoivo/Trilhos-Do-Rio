@@ -1,0 +1,142 @@
+<!DOCTYPE html >
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Using MySQL and PHP with Google Maps</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/default.css" rel="stylesheet">
+  </head>
+
+  <body>
+   
+    <script>
+      var customLabel = {
+        restaurant: {
+          label: 'R'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
+        function initMap() {
+			
+			  var path = [];
+			  var kilometro ="";
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng( -22.9027800, -43.2075000),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('http://localhost:8080/GoogleMapsTeste/GoogleMaps/SqlToXml.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var name = markerElem.getAttribute('name');
+              var address = markerElem.getAttribute('address');
+              var type = markerElem.getAttribute('type');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+             path.push(new google.maps.LatLng( parseFloat(markerElem.getAttribute('lat')),parseFloat(markerElem.getAttribute('lng'))));
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+              
+             
+            });
+            var polyline = new google.maps.Polyline({
+            map: map,
+            path: path,
+            strokeColor: '#0000FF',
+            strokeOpacity: 0.7,
+            strokeWeight: 1
+          });
+          kilometro =  Math.round(polyline.inKm())+' km';
+         
+       
+        
+          });
+                 document.getElementById("distanceTravelled").innerHTML = kilometro;  // Fazendo o calculo de distância percorrida
+        }
+
+
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+  google.maps.LatLng.prototype.kmTo = function(a){   
+          var e = Math, ra = e.PI/180;
+          var b = this.lat() * ra, c = a.lat() * ra, d = b - c;
+          var g = this.lng() * ra - a.lng() * ra;
+          var f = 2 * e.asin(e.sqrt(e.pow(e.sin(d/2), 2) + e.cos(b) * e.cos(c) * e.pow(e.sin(g/2), 2)));
+          return f * 6378.137;
+    }
+
+    google.maps.Polyline.prototype.inKm = function(n){
+          var a = this.getPath(n), len = a.getLength(), dist = 0;
+            for(var i=0; i<len-1; i++){
+            dist += a.getAt(i).kmTo(a.getAt(i+1));
+          }
+          return dist;
+    }
+    google.maps.event.addDomListener(window, 'load', initMap);
+
+      function doNothing() {}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72NcoZXPMcYPisPwtck2Mwr_ocPMB8ZY&callback=initMap">
+    </script>
+     <div id="map"></div>
+    <div id="info-panel" style="float:right;text-align:left;">
+        <div style="margin:10px;border-width:2px;float:center;text-align:center;">
+          <h3>Me and My Pack Interactive Route Map</h3>
+          <b>Distance Travelled: </b>
+          <div id="distanceTravelled"  ></div><br>
+          </div>
+          </div>
+  </body>
+</html>

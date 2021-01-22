@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+  <HEAD>
+    <TITLE>A frame document with CSS 2.1</TITLE>
+    <STYLE type="text/css" media="screen">
+      BODY { height: 8.5in;
+		  background-color:#b0c4de;
+		  width:100%;
+		   } /* Required for percentage heights below */
+      #header {
+        position: fixed;
+        width: 100%;
+        height: 10%;
+        top: 0%;
+        right: 0%;
+        bottom: auto;
+        left: 0%;
+        background-color:#ffe100;
+      }
+      #sidebar {
+        position: fixed;
+        width: 10%;
+        height: auto;
+        top: 10%;
+        right: auto;
+        bottom: 0%;
+        left: 0%;
+        background-color:red;
+      }
+      #main {
+        position: fixed;
+        width: 90%;
+        height: 35%;
+        top: 10%;
+        right: 0%;
+        bottom: 55%;
+        left: 10%;
+         background-color:white;
+      }
+      #footer {
+        position: fixed;
+        width: 44.7%;
+        height: auto;
+        top: 45%;
+        right: 0%;
+        bottom: 0%;
+        left: 10%;
+        background-color:green;
+      }
+      #rightbar {
+        position: fixed;
+        width: 50%;
+        height: auto;
+        top: 45%;
+        right:0%;
+        bottom: 0%;
+        left: 54.7%;
+        background-color:blue;
+      }
+    </STYLE>
+  </HEAD>
+  <BODY>
+
+    <DIV id="header"> ... 1 </DIV>
+
+    <DIV id="sidebar"> ... 2 </DIV>
+    <DIV id="main"> ... 3 </DIV>
+    <DIV id="footer"> ... 4 </DIV>
+    <DIV id="rightbar"> ... 5 </DIV>
+  </BODY>
+  </html>

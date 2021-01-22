@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #ulOpcoes {
+            float: left;
+        }
+
+        #ulOpcoesSelecionadas {
+            border: 1px solid gray;
+            float: right;
+            min-width: 250px;
+            min-height: 250px;
+        }
+
+        #divStatus {
+            clear: both;
+        }
+    </style>
+
+    <script>
+
+        /*origem*/
+        window.onload = function () {
+
+            //Após a carga completa da página, cada LI é associado à função onDragStart.
+            var lis = document.querySelectorAll("#ulOpcoes > li");
+            for (var i = 0; i < lis.length; i++) {
+
+                lis[i].addEventListener("dragstart", function (event) { onDragStart(event) });
+                lis[i].addEventListener("drag", function () { onDrag() });
+                lis[i].addEventListener("dragend", function () { onDragEnd() });
+            }
+        }
+
+
+        function onDragStart(event) {
+
+            document.getElementById('divStatus').innerHTML = "iniciou o arrastamento...<br />";
+            event.dataTransfer.setData("Text", event.target.innerHTML);
+        }
+
+        function onDrag() {
+            document.getElementById('divStatus').innerHTML += "arrastando o elemento...<br />";
+        }
+
+
+        function onDragEnd() {
+            document.getElementById('divStatus').innerHTML += "terminou de arrastar...<br />";
+        }
+
+
+        /*destino*/
+
+        function onDragEnter() {
+            document.getElementById('divStatus').innerHTML += "entrou no destino...<br />";
+        }
+        function onDragLeave() {
+            document.getElementById('divStatus').innerHTML += "deixou o destino...<br />";
+        }
+
+        function onDragOver(event) {
+            event.preventDefault();
+        }
+
+        function onDrop(event) {
+
+            document.getElementById('divStatus').innerHTML += "O elemento foi solto dentro do destino... <br />";
+            var li = document.createElement("li")
+            li.innerHTML = event.dataTransfer.getData("Text");
+            document.getElementById('ulOpcoesSelecionadas').appendChild(li);
+            event.preventDefault();
+
+        }
+    </script>
+
+</head>
+<body>
+    <ul id="ulOpcoes">
+        <li draggable="true">Opção 1</li>
+        <li draggable="true">Opção 2</li>
+        <li draggable="true">Opção 3</li>
+        <li draggable="true">Opção 4</li>
+        <li draggable="true">Opção 5</li>
+        <li draggable="true">Opção 6</li>
+    </ul>
+
+
+    <ul id="ulOpcoesSelecionadas" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragenter="onDragEnter()" ondragleave="onDragLeave()">
+    </ul>
+
+    <div id="divStatus">
+    </div>
+ 
+</body>
+</html>

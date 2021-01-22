@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lines between the nearest destinations showing distance</title>
+
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map_canvas { width:600px; height:500px }
+</style>
+<!-- need to load the geometry library for calculating distances -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72NcoZXPMcYPisPwtck2Mwr_ocPMB8ZY&callback=initMap"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    function initialize() {
+        var map, i, latLng, marker, polyline, stuDistances;
+    
+        var arrDestinations = [
+            {title: 'Keswick',        lat: 54.60039,   lng: -3.13632},
+            {title: 'Coniston',       lat: 54.36897,   lng: -3.07561},
+            {title: 'Lake District',  lat: 54.5003526, lng: -3.0844116},
+            {title: 'Cumbria',        lat: 54.57723,   lng: -2.79748}
+        ];
+        
+        var stuHome = {title: 'Ambleside', lat: 54.42838, lng: -2.9623};
+        
+        var homeLatlng = new google.maps.LatLng(stuHome.lat, stuHome.lng);
+        var myOptions = {
+            zoom: 10,
+            center: homeLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                
+        var homeMarker = new google.maps.Marker({
+            position: homeLatlng, 
+            map: map, 
+            title: stuHome.title
+        });
+        
+        $('#tableNeighbours').append(
+              '<tr>'
+            + '<th>Destination</th>'
+            + '<th colspan="2">' + stuHome.title + '</th>'
+            + '</tr>'
+        );
+                  
+        for (i = 0; i < arrDestinations.length; i++) {
+            latLng = new google.maps.LatLng(arrDestinations[i].lat, arrDestinations[i].lng);
+            marker = new google.maps.Marker({
+                position: latLng,
+                map: map, 
+                title: arrDestinations[i].title,
+                icon: 'http://maps.google.co.uk/intl/en_ALL/mapfiles/ms/micons/green-dot.png'
+            });
+                        
+            // draw lines between each marker and home.  these are curved lines, not as the crow flies, i.e. they take into account the curvature of the earth (only noticable on longer distances)
+            polyline = new google.maps.Polyline({
+                path: [homeLatlng, latLng],
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.5,
+                strokeWeight: 4,
+                geodesic: true,
+                map: map
+            });
+            
+            // calculate the distance between home and this marker
+            stuDistances = calculateDistances(homeLatlng, latLng);
+            $('#tableNeighbours').append(
+                  '<tr>' 
+                + '<td>' + arrDestinations[i].title + '</td>'
+                + '<td>' + stuDistances.km + ' km</td>'
+                + '<td>' + stuDistances.miles + ' miles</td>'
+                + '</tr>'
+            );
+        }
+    }
+    
+    function calculateDistances(start,end) {
+        var stuDistances = {};
+        
+        stuDistances.metres = google.maps.geometry.spherical.computeDistanceBetween(start, end);    // distance in metres
+        stuDistances.km = Math.round(stuDistances.metres / 1000 *10)/10;                            // distance in km rounded to 1dp
+        stuDistances.miles = Math.round(stuDistances.metres / 1000 * 0.6214 *10)/10;                // distance in miles rounded to 1dp
+        
+        return stuDistances;
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+</head>
+<body>
+    <div id="map_canvas"></div>
+    
+    <table id="tableNeighbours" border="1"></table>
+</body>
+</html>

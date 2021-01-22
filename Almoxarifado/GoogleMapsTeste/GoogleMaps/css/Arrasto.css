@@ -1,0 +1,52 @@
+/* Previne do conteúdo de texto de elementos arrastáveis de ser selecionável */
+[draggable] {
+	-moz-user-select: none;
+	-khtml-user-select:none;
+	-webkit-user-select: none;
+	user-select: none;
+	/* Requerido para fazer elementos arrastáveis em webkits mais velhos */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+}
+
+body {
+	background: #F81;
+}
+
+.column {
+	height: 150px;
+	width: 150px;
+	float: left;
+	border: 2px solid #666666;
+	background-color: #CCC;
+	margin-right: 5px;
+	border-radius: 10px;
+	box-shadow: 0 0 3px #000;
+	text-align: center;
+	cursor: move;
+}
+
+.column header {
+	color: #FFF;
+	text-shadow: #000 0 1px;
+	box-shadow: 5px;
+	padding: 5px;
+	background: #300;
+	background: -moz-linear-gradient(left, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+	background: -webkit-linear-gradient(left, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  	background: -ms-linear-gradient(left, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+	background: linear-gradient(to left, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+	border-bottom: 1px solid #DDD;
+	-webkit-border-top-left-radius: 10px;
+  	-moz-border-radius-topleft: 10px;
+  	-ms-border-radius-topleft: 10px;
+  	border-top-left-radius: 10px;
+  	-webkit-border-top-right-radius: 10px;
+  	-ms-border-top-right-radius: 10px;
+  	-moz-border-radius-topright: 10px;
+  	border-top-right-radius: 10px;
+}
+
+.column.over {
+	border: 2px dashed #000;
+}

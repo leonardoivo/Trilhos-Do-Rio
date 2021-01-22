@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        addEventListener('DOMContentLoaded', function () {
+
+            //Código na página.
+
+            var wk1 = new Worker("worker1.js"); //Criando o worker
+
+            //Monitorando as mensagens de retorno.
+            wk1.onmessage = function (e) {
+                if (e.data.acao == "mostrar")
+                    document.getElementById("incrementos").innerHTML = e.data.incremento;
+                else if (e.data.acao == "parar")
+                    wk1.terminate();
+            };
+
+            //É aqui que começa a execução do worker
+            wk1.postMessage("executar");
+
+
+
+        }, false);
+    </script>
+
+
+
+
+
+</head>
+<body>
+        <span id="incrementos" ></span>
+         <br />
+        <span id="incrementos2" ></span>
+
+</body>
+</html>

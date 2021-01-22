@@ -1,1 +1,0 @@
-INSERT INTO tabelas_sistema ( nome_tabela, id_perfil, link) VALUES ('reunioesatas',4,'ReunioeseAtas')

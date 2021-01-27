@@ -39,7 +39,25 @@ class CrudConselhoFiscal extends Crud{
         return $ConselhoFiscal;
         }
     
+        public function ListarConselhoFiscalGeralporID($id_conselho){
     
+            $resultado=$this->conexao->query("select * from ConselhoFiscal where id_conselho={$id_conselho}");
+             $ConselhoFiscal = new ConselhoFiscalLO();
+            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
+            {
+                 $ConselhoFiscalDT= new ConselhoFiscalDTO();
+                $ConselhoFiscalDT->id_conselho=$linha['id_conselho'];
+                $ConselhoFiscalDT->Titulo=$linha['Titulo'];
+                $ConselhoFiscalDT->Relatorio=$linha['Relatorio'];
+                $ConselhoFiscalDT->id_cargo=$linha['id_cargo'];
+                $ConselhoFiscalDT->id_usuario=$linha['id_usuario'];
+                $ConselhoFiscal->add($ConselhoFiscalDT);
+    
+          
+            }
+            return $ConselhoFiscal;
+            }
+        
     
     public function GravarConselhoFiscal(ConselhoFiscalDTO $ConselhoFiscalDT)
     {

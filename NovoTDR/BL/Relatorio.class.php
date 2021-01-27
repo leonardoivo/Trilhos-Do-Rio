@@ -13,6 +13,7 @@ abstract public function Criar();
 
 abstract public function Excluir(int $id_relatorio);
 
+abstract public function Alterar(int $id_relatorio);
 
 
 
